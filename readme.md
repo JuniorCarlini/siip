@@ -1,2 +1,4 @@
 
-using Python 3.10.13
+using Python 3.10.
+
+$ pip install -r requirements.txt
