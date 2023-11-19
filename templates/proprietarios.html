@@ -21,11 +21,14 @@
 </head>
 
 <body>
-    <button type="button " class="btn btn-success m-5 rounded-3" data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop">
-        <i class="bi bi-pencil-square"></i> Cadastrar Poprietario
-    </button>
+
     <div class="container mt-5">
+        <div class="d-flex justify-content-end">
+            <button type="button " class="btn btn-success mb-2 rounded-3" data-bs-toggle="modal"
+                data-bs-target="#cadastrapropriedade">
+                <i class="bi bi-pencil-square"></i> Cadastrar Poprietario
+            </button>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -46,18 +49,35 @@
                     <td class="align-middle">(69) 99943-3343</td>
                     <td class="align-middle">nonatopereira1234@gmail.com</td>
                     <!-- Botões nas últimas colunas -->
-                    <td class="align-middle"><button class="btn btn-success rounded-3"> <i class="bi bi-eye-fill"></i>
+                    <td class="align-middle"><button class="btn btn-success ps-4 pe-4 rounded-3"> <i
+                                class="bi bi-eye-fill"></i>
                         </button></td>
-                    <td class="align-middle"><button class="btn btn-success rounded-3"> <i
+                    <td class="align-middle"><button class="btn btn-success ps-4 pe-4 rounded-3"
+                            data-bs-target="#editarpropriedade" data-bs-toggle="modal"> <i
                                 class="bi bi-pencil-square"></i> </button></td>
                 </tr>
                 <!-- Adicione mais linhas conforme necessário -->
             </tbody>
         </table>
     </div>
+    <div class="container mt-2">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link">Proximo</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Anterior</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
     <!-- Modal 1 -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="cadastrapropriedade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -89,6 +109,44 @@
                             class="bi bi-plus-square-fill"></i>
                         Cadastrar</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="editarpropriedade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Editar Propriedade</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="text" class="form-label fw-semibold">Nome:</label>
+                            <input type="text" class="form-control" placeholder="Digite o nome do proprietario.">
+                        </div>
+                        <div class="col">
+                            <label for="text" class="form-label fw-semibold">Contato:</label>
+                            <input type="text" class="form-control" placeholder="Digite o contato do proprietario.">
+                        </div>
+                        <div class="col">
+                            <label for="text" class="form-label fw-semibold">E-mail:</label>
+                            <input type="text" class="form-control" placeholder="Digite o e-mail do proprietario.">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2"
+                        data-bs-dismiss="modal"><i class="bi bi-x-square-fill"></i>
+                        Cancelar</button>
+                    <button type="button" class="btn btn-success rounded-3 fw-semibold px-6"><i
+                            class="bi bi-plus-square-fill"></i>
+                        Cadastrar</button>
+                </div>
+
             </div>
         </div>
     </div>
