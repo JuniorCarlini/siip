@@ -21,10 +21,40 @@
 </head>
 
 <body>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        botão
+    <button type="button " class="btn btn-success m-5 rounded-3" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">
+        <i class="bi bi-pencil-square"></i> Cadastrar Poprietario
     </button>
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Imagem</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Contato</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- Imagem redonda na primeira coluna -->
+                    <td class="align-middle"><img src="../setup/static/assets/images/imgperfil.jpg"
+                            class="rounded-circle" alt="Imagem Redonda" width="40" height="40"></td>
+                    <!-- Imagem redonda na segunda coluna -->
+                    <td class="align-middle">Nonato Pereira</td>
+                    <td class="align-middle">(69) 99943-3343</td>
+                    <td class="align-middle">nonatopereira1234@gmail.com</td>
+                    <!-- Botões nas últimas colunas -->
+                    <td class="align-middle"><button class="btn btn-success rounded-3"> <i class="bi bi-eye-fill"></i>
+                        </button></td>
+                    <td class="align-middle"><button class="btn btn-success rounded-3"> <i
+                                class="bi bi-pencil-square"></i> </button></td>
+                </tr>
+                <!-- Adicione mais linhas conforme necessário -->
+            </tbody>
+        </table>
+    </div>
 
     <!-- Modal 1 -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
