@@ -1,61 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!-- index.html -->
+{% extends 'inicio/base.html' %}
+{% load static %}
+{% block head_extra %}
+<!-- Conteúdo adicional para o cabeçalho desta página -->
+<style>
+   #map {
+      height: 400px;
+   }
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-   <link rel='icon' href='../static/icon.svg' type='image/x-icon' sizes="16x16" />
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet">
-   <title>Inicio</title>
+   body {
+      font-family: 'Montserrat', sans-serif;
+   }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+{% endblock %}
 
-   <style>
-      #map {
-         height: 400px;
-      }
-
-      body {
-         font-family: 'Montserrat', sans-serif;
-      }
-   </style>
-</head>
-
-<body>
-   <div class="container mt-5">
-      <h2 class="mb-4 fw-bold">Inicio</h2>
-   </div>
-   <div class="container mt-5">
-      <div class="row">
-         <div class="col">
-            <div id="map"></div>
-         </div>
+{% block content %}
+<!-- Conteúdo específico desta página -->
+<div class="container mt-5">
+   <h2 class="mb-4 fw-bold">Inicio</h2>
+</div>
+<div class="container mt-5">
+   <div class="row">
+      <div class="col">
+         <div id="map"></div>
       </div>
    </div>
+</div>
 
-   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+   // Seu script específico para esta página
+   var map = L.map('map').setView([-11.6938, -62.7184], 13);
+   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+   }).addTo(map);
 
-   <script>
-      var map = L.map('map').setView([-11.6938,-62.7184], 13); // Define as coordenadas iniciais e o nível de zoom
+   var armadilha01 = L.marker([-11.69129, -62.74881]).addTo(map).bindPopup('Armadilha 01');
+   var armadilha02 = L.marker([-11.7087, -62.7285]).addTo(map).bindPopup('Armadilha 02');
+   var armadilha03 = L.marker([-11.6901, -62.6921]).addTo(map).bindPopup('Armadilha 03');
+   var armadilha04 = L.marker([-11.7286, -62.7074]).addTo(map).bindPopup('Armadilha 04');
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-         attribution: '© OpenStreetMap contributors'
-      }).addTo(map);
-
-      // Adiciona marcadores para cada regional
-      var armadilha01 = L.marker([-11.69129, -62.74881]).addTo(map).bindPopup('Armadilha 01');
-      var armadilha02 = L.marker([-11.7087, -62.7285]).addTo(map).bindPopup('Armadilha 02');
-      var armadilha03 = L.marker([-11.6901,-62.6921]).addTo(map).bindPopup('Armadilha 03');
-      var armadilha04 = L.marker([-11.7286,-62.7074]).addTo(map).bindPopup('Armadilha 04');
-      // Adiciona mais marcadores conforme necessário
-   </script>
-
-</body>
-
-</html>
+   // Adicionar marcadores conforme necessário
+</script>
+{% endblock %}
