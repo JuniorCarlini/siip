@@ -13,11 +13,15 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="d-flex justify-content-end">
-        <button type="button " class="btn btn-success mb-2 rounded-3" data-bs-toggle="modal"
-            data-bs-target="#cadastraproprietario">
-            <i class="bi bi-pencil-square"></i> Cadastrar Poprietario
-        </button>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="fw-bold">Proprietarios Cadastrados</h2>
+        <div class="d-flex align-items-center">
+            <input type="text" class="form-control me-2" placeholder="Buscar...">
+            <button type="button" class="btn btn-success rounded-3 align-self-center flex-shrink-0"
+                data-bs-toggle="modal" data-bs-target="#cadastrapropriedade">
+                <i class="bi bi-pencil-square"></i> Cadastrar Propriedades
+            </button>
+        </div>
     </div>
     <table class="table">
         <thead>
