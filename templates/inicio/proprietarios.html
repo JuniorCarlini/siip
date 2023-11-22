@@ -76,39 +76,42 @@
 <!-- Modal 1 -->
 <div class="modal fade" id="cadastraproprietario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl ">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Cadastrar Proprietario</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="text" class="form-label fw-semibold">Nome:</label>
-                        <input type="text" class="form-control" placeholder="Digite o nome do proprietario.">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nome" class="form-label fw-semibold">Nome:</label>
+                        <input type="text" class="form-control" name="nome" placeholder="Digite o nome do proprietario."
+                            required>
                     </div>
-                    <div class="col">
-                        <label for="text" class="form-label fw-semibold">Contato:</label>
-                        <input type="text" class="form-control" placeholder="Digite o contato do proprietario.">
+                    <div class="mb-3">
+                        <label for="numero_telefone" class="form-label fw-semibold">Contato:</label>
+                        <input type="text" class="form-control" name="numero_telefone"
+                            placeholder="Digite o contato do proprietario." required>
                     </div>
-                    <div class="col">
-                        <label for="text" class="form-label fw-semibold">E-mail:</label>
-                        <input type="text" class="form-control" placeholder="Digite o e-mail do proprietario.">
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">E-mail:</label>
+                        <input type="text" class="form-control" name="email"
+                            placeholder="Digite o e-mail do proprietario." required>
                     </div>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal"><i
-                        class="bi bi-x-square-fill"></i>
-                    Cancelar</button>
-                <button type="button" class="btn btn-success rounded-3 fw-semibold px-6"><i
-                        class="bi bi-plus-square-fill"></i>
-                    Cadastrar</button>
+                        class="bi bi-x-square-fill"></i> Cancelar</button>
+                <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6"><i
+                        class="bi bi-plus-square-fill"></i> Cadastrar</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
+
 
 <!-- Modal 2 -->
 <div class="modal fade" id="editarproprietario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
