@@ -8,15 +8,16 @@
     }
 </style>
 {% endblock %}
+
 {% block content %}
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center">
-        <h2 class="fw-bold">Proprietarios Cadastrados</h2>
+        <h2 class="fw-bold">Propriedades Cadastradas</h2>
         <div class="d-flex align-items-center">
             <input type="text" class="form-control me-2" placeholder="Buscar...">
             <button type="button" class="btn btn-success me-2 rounded-3 align-self-center flex-shrink-0"
-                data-bs-toggle="modal" data-bs-target="#cadastraproprietario">
-                <i class="bi bi-pencil-square"></i> Cadastrar Proprietario
+                data-bs-toggle="modal" data-bs-target="#cadastrapropriedade">
+                <i class="bi bi-pencil-square"></i> Cadastrar Propriedade
             </button>
         </div>
     </div>
@@ -27,68 +28,64 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Contato</th>
                 <th scope="col">Email</th>
+                <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
-            {% for proprietario in proprietarios %}
+            {% for propriedade in propriedades %}
             <tr>
                 <td class="align-middle">
-                    {% if proprietario.imagem %}
-                    <img src="{{ proprietario.imagem.url }}" class="rounded-circle" alt="" width="40" height="40">
+                    {% if propriedade.imagem %}
+                    <img src="{{ propriedade.imagem.url }}" class="rounded-circle" alt="" width="40" height="40">
                     {% else %}
-                    <!-- Coloque uma imagem padrão ou deixe em branco, dependendo da sua preferência -->
                     <img src="{% static 'assets/images/usuariopadrao.png' %}" class="rounded-circle" alt="Sem Imagem"
                         width="40" height="40">
                     {% endif %}
                 </td>
-                <td class="align-middle">{{ proprietario.nome }}</td>
-                <td class="align-middle">{{ proprietario.numero_telefone }}</td>
-                <td class="align-middle">{{ proprietario.email }}</td>
-                <!-- Adicione botões de ação conforme necessário -->
+                <td class="align-middle">{{ propriedade.nome }}</td>
+                <td class="align-middle">{{ propriedade.numero_telefone }}</td>
+                <td class="align-middle">{{ propriedade.email }}</td>
                 <td class="text-end align-middle">
-                    <a href="{% url 'propriedades' proprietario_id=proprietario.id %}"
+                    <a href="{% url 'propriedades' proprietario_id=propriedade.id %}"
                         class="btn btn-success ps-2 pe-2 rounded-3">
                         <i class="bi bi-eye-fill"></i> Propriedades
                     </a>
                     <button class="btn btn-success ps-2 pe-2 rounded-3"
-                        data-bs-target="#editarproprietario{{ proprietario.id }}" data-bs-toggle="modal">
+                        data-bs-target="#editarpropriedade{{ propriedade.id }}" data-bs-toggle="modal">
                         <i class="bi bi-pencil-square"></i> Editar
                     </button>
                 </td>
-
-
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
 <div class="container mt-2">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
-            {% if proprietarios.has_previous %}
+            {% if propriedades.has_previous %}
             <li class="page-item">
-                <a class="page-link text-success" href="?page={{ proprietarios.previous_page_number }}">Anterior</a>
+                <a class="page-link text-success" href="?page={{ propriedades.previous_page_number }}">Anterior</a>
             </li>
             {% endif %}
-            {% for i in proprietarios.paginator.page_range %}
-            <li class="page-item{% if i == proprietarios.number %} active{% endif %}">
-                <a class="page-link{% if i == proprietarios.number %} bg-success text-white{% else %}  text-dark{% endif %}"
+            {% for i in propriedades.paginator.page_range %}
+            <li class="page-item{% if i == propriedades.number %} active{% endif %}">
+                <a class="page-link{% if i == propriedades.number %} bg-success text-white{% else %}  text-dark{% endif %}"
                     href="?page={{ i }}">{{ i }}</a>
             </li>
             {% endfor %}
-            {% if proprietarios.has_next %}
+            {% if propriedades.has_next %}
             <li class="page-item">
-                <a class="page-link text-success" href="?page={{ proprietarios.next_page_number }}">Próximo</a>
+                <a class="page-link text-success" href="?page={{ propriedades.next_page_number }}">Próximo</a>
             </li>
             {% endif %}
         </ul>
     </nav>
 </div>
 
-
-
 <!-- Modal 1 -->
-<div class="modal fade" id="cadastraproprietario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="cadastrapropriedade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
@@ -130,9 +127,8 @@
     </div>
 </div>
 
-
 <!-- Modal 2 -->
-<div class="modal fade" id="editarproprietario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="editarpropriedade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl ">
         <div class="modal-content">
@@ -167,7 +163,6 @@
         </div>
     </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

@@ -5,7 +5,6 @@ class Proprietario(models.Model):
     imagem = models.ImageField(upload_to='proprietarios/', null=True, blank=True)
     numero_telefone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
-
     def __str__(self):
         return self.nome
 
