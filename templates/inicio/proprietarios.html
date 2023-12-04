@@ -1,9 +1,7 @@
-<!-- proprietarios.html -->
 {% extends 'inicio/base.html' %}
 {% load static %}
 
 {% block head_extra %}
-<!-- Adicione estilos adicionais específicos para esta página, se necessário -->
 <style>
     body {
         font-family: 'Montserrat', sans-serif;
@@ -12,13 +10,11 @@
 {% endblock %}
 {% block content %}
 <div class="container mt-5">
-
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="fw-bold">Proprietarios Cadastrados</h2>
         <div class="d-flex align-items-center">
             <input type="text" class="form-control me-2" placeholder="Buscar...">
-
-            <button type="button" class="btn btn-success rounded-3 align-self-center flex-shrink-0"
+            <button type="button" class="btn btn-success me-2 rounded-3 align-self-center flex-shrink-0"
                 data-bs-toggle="modal" data-bs-target="#cadastraproprietario">
                 <i class="bi bi-pencil-square"></i> Cadastrar Proprietario
             </button>
@@ -42,7 +38,7 @@
                     <img src="{{ proprietario.imagem.url }}" class="rounded-circle" alt="" width="40" height="40">
                     {% else %}
                     <!-- Coloque uma imagem padrão ou deixe em branco, dependendo da sua preferência -->
-                    <img src="{% static 'assets/images/usuariopadrao.jpg' %}" class="rounded-circle" alt="Sem Imagem"
+                    <img src="{% static 'assets/images/usuariopadrao.png' %}" class="rounded-circle" alt="Sem Imagem"
                         width="40" height="40">
                     {% endif %}
                 </td>
@@ -50,12 +46,15 @@
                 <td class="align-middle">{{ proprietario.numero_telefone }}</td>
                 <td class="align-middle">{{ proprietario.email }}</td>
                 <!-- Adicione botões de ação conforme necessário -->
-                <td class="align-middle"><button class="btn btn-success ps-4 pe-4 rounded-3"> <i
-                            class="bi bi-eye-fill"></i>
-                    </button></td>
-                <td class="align-middle"><button class="btn btn-success ps-4 pe-4 rounded-3"
-                        data-bs-target="#editarproprietario" data-bs-toggle="modal"> <i class="bi bi-pencil-square"></i>
-                    </button></td>
+                <td class=" text-end align-middle">
+                    <button class="btn btn-success ps-2 pe-2 rounded-3">
+                        <i class="bi bi-eye-fill"></i> Propriedades
+                    </button>
+                    <button class="btn btn-success ps-2 pe-2 rounded-3" data-bs-target="#editarproprietario"
+                        data-bs-toggle="modal">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -65,18 +64,18 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             {% if proprietarios.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ proprietarios.previous_page_number }}">Anterior</a>
+            <li class="page-item ">
+                <a class="page-link " href="?page={{ proprietarios.previous_page_number }}">Anterior</a>
             </li>
             {% endif %}
             {% for i in proprietarios.paginator.page_range %}
             <li class="page-item{% if i == proprietarios.number %} active{% endif %}">
-                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                <a class="page-link text-success" href="?page={{ i }}">{{ i }}</a>
             </li>
             {% endfor %}
             {% if proprietarios.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ proprietarios.next_page_number }}">Próximo</a>
+            <li class="page-item ">
+                <a class="page-link " href="?page={{ proprietarios.next_page_number }}">Próximo</a>
             </li>
             {% endif %}
         </ul>
@@ -99,6 +98,10 @@
                         <label for="nome" class="form-label fw-semibold">Nome:</label>
                         <input type="text" class="form-control" name="nome" placeholder="Digite o nome do proprietario."
                             required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagem" class="form-label fw-semibold">Imagem:</label>
+                        <input type="file" class="form-control" id="inputGroupFile02" required>
                     </div>
                     <div class="mb-3">
                         <label for="numero_telefone" class="form-label fw-semibold">Contato:</label>
@@ -156,7 +159,6 @@
                         class="bi bi-plus-square-fill"></i>
                     Editar</button>
             </div>
-
         </div>
     </div>
 </div>
