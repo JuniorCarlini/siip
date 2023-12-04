@@ -27,7 +27,6 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Contato</th>
                 <th scope="col">Email</th>
-                <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +46,8 @@
                 <td class="align-middle">{{ proprietario.email }}</td>
                 <!-- Adicione botões de ação conforme necessário -->
                 <td class=" text-end align-middle">
-                    <button class="btn btn-success ps-2 pe-2 rounded-3">
+                    <button href="{% url 'propriedades_proprietario' proprietario.id %}"
+                        class="btn btn-success ps-2 pe-2 rounded-3">
                         <i class="bi bi-eye-fill"></i> Propriedades
                     </button>
                     <button class="btn btn-success ps-2 pe-2 rounded-3" data-bs-target="#editarproprietario"
@@ -64,23 +64,26 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             {% if proprietarios.has_previous %}
-            <li class="page-item ">
-                <a class="page-link " href="?page={{ proprietarios.previous_page_number }}">Anterior</a>
+            <li class="page-item">
+                <a class="page-link text-success" href="?page={{ proprietarios.previous_page_number }}">Anterior</a>
             </li>
             {% endif %}
             {% for i in proprietarios.paginator.page_range %}
             <li class="page-item{% if i == proprietarios.number %} active{% endif %}">
-                <a class="page-link text-success" href="?page={{ i }}">{{ i }}</a>
+                <a class="page-link{% if i == proprietarios.number %} bg-success text-white{% else %}  text-dark{% endif %}"
+                    href="?page={{ i }}">{{ i }}</a>
             </li>
             {% endfor %}
             {% if proprietarios.has_next %}
-            <li class="page-item ">
-                <a class="page-link " href="?page={{ proprietarios.next_page_number }}">Próximo</a>
+            <li class="page-item">
+                <a class="page-link text-success" href="?page={{ proprietarios.next_page_number }}">Próximo</a>
             </li>
             {% endif %}
         </ul>
     </nav>
 </div>
+
+
 
 <!-- Modal 1 -->
 <div class="modal fade" id="cadastraproprietario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
