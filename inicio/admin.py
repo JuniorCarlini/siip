@@ -3,7 +3,7 @@ from .models import Proprietario, Propriedade, Armadilha
 
 @admin.register(Proprietario)
 class ProprietarioAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'numero_telefone', 'email')
+    list_display = ('id', 'nome', 'numero_telefone', 'email')
 
 @admin.register(Propriedade)
 class PropriedadeAdmin(admin.ModelAdmin):
