@@ -10,13 +10,11 @@
     }
 </style>
 {% endblock %}
-
 {% block content %}
 <div class="container mt-5">
+
     <div class="d-flex justify-content-between align-items-center">
-
         <h2 class="fw-bold">Proprietarios Cadastrados</h2>
-
         <div class="d-flex align-items-center">
             <input type="text" class="form-control me-2" placeholder="Buscar...">
 
@@ -37,15 +35,21 @@
             </tr>
         </thead>
         <tbody>
+            {% for proprietario in proprietarios %}
             <tr>
-                <!-- Imagem redonda na primeira coluna -->
-                <td class="align-middle"><img src='{% static "/assets/images/imgperfil.jpg" %}' class="rounded-circle"
-                        alt="Imagem Redonda" width="40" height="40"></td>
-                <!-- Imagem redonda na segunda coluna -->
-                <td class="align-middle">Nonato Pereira</td>
-                <td class="align-middle">(69) 99943-3343</td>
-                <td class="align-middle">nonatopereira1234@gmail.com</td>
-                <!-- Botões nas últimas colunas -->
+                <td class="align-middle">
+                    {% if proprietario.imagem %}
+                    <img src="{{ proprietario.imagem.url }}" class="rounded-circle" alt="" width="40" height="40">
+                    {% else %}
+                    <!-- Coloque uma imagem padrão ou deixe em branco, dependendo da sua preferência -->
+                    <img src="{% static 'assets/images/usuariopadrao.jpg' %}" class="rounded-circle" alt="Sem Imagem"
+                        width="40" height="40">
+                    {% endif %}
+                </td>
+                <td class="align-middle">{{ proprietario.nome }}</td>
+                <td class="align-middle">{{ proprietario.numero_telefone }}</td>
+                <td class="align-middle">{{ proprietario.email }}</td>
+                <!-- Adicione botões de ação conforme necessário -->
                 <td class="align-middle"><button class="btn btn-success ps-4 pe-4 rounded-3"> <i
                             class="bi bi-eye-fill"></i>
                     </button></td>
@@ -53,22 +57,28 @@
                         data-bs-target="#editarproprietario" data-bs-toggle="modal"> <i class="bi bi-pencil-square"></i>
                     </button></td>
             </tr>
-            <!-- Adicione mais linhas conforme necessário -->
+            {% endfor %}
         </tbody>
     </table>
 </div>
 <div class="container mt-2">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-                <a class="page-link">Proximo</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            {% if proprietarios.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="#">Anterior</a>
+                <a class="page-link" href="?page={{ proprietarios.previous_page_number }}">Anterior</a>
             </li>
+            {% endif %}
+            {% for i in proprietarios.paginator.page_range %}
+            <li class="page-item{% if i == proprietarios.number %} active{% endif %}">
+                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endfor %}
+            {% if proprietarios.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ proprietarios.next_page_number }}">Próximo</a>
+            </li>
+            {% endif %}
         </ul>
     </nav>
 </div>
@@ -150,6 +160,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
