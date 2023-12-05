@@ -76,14 +76,15 @@
     </nav>
 </div>
 
-<!-- Modal 1 -->
+<!-- Modal Cadastrar Propriedade -->
 <div class="modal fade" id="cadastrapropriedade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Cadastrar Propriedade de <span
-                        class="fw-normal">{{ proprietario.nome }}</span></h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">
+                    Cadastrar Propriedade de <span class="fw-normal">{{ proprietario.nome }}</span>
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -91,8 +92,8 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="nome_proprietario" class="form-label fw-semibold">Nome do Proprietário:</label>
-                        <input type="text" class="form-control" name="nome_proprietario" value="{{ proprietario.nome }}"
-                            disabled>
+                        <input type="text" class="form-control fw-normal" name="nome_proprietario"
+                            value="{{ proprietario.nome }}" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="nome_propriedade" class="form-label fw-semibold">Nome da Propriedade:</label>
@@ -102,19 +103,22 @@
                     <div class="mb-3">
                         <label for="endereco" class="form-label fw-semibold">Endereço:</label>
                         <input type="text" class="form-control" name="endereco"
-                            placeholder="Digite o endereco do sitio." required>
+                            placeholder="Digite o endereço do sítio." required>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal"><i
-                        class="bi bi-x-square-fill"></i> Cancelar</button>
-                <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6"><i
-                        class="bi bi-plus-square-fill"></i> Cadastrar</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal">
+                        <i class="bi bi-x-square-fill"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6">
+                        <i class="bi bi-plus-square-fill"></i> Cadastrar
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
 
 <!-- Modal 2 -->
 <div class="modal fade" id="editarpropriedade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
