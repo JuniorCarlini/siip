@@ -2,45 +2,77 @@
 {% extends 'inicio/base.html' %}
 {% load static %}
 {% block head_extra %}
-<!-- Conteúdo adicional para o cabeçalho desta página -->
-<style>
-   #map {
-      height: 400px;
-   }
+   <!-- Conteúdo adicional para o cabeçalho desta página -->
+   <style>
+      #map {
+         height: 600px;
+   
+      }
 
-   body {
-      font-family: 'Montserrat', sans-serif;
-   }
-</style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      body {
+         font-family: 'Montserrat', sans-serif;
+      }
+   </style>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 {% endblock %}
 
 {% block content %}
-<!-- Conteúdo específico desta página -->
-<div class="container mt-5">
-   <h2 class="mb-4 fw-bold">Inicio</h2>
-</div>
-<div class="container mt-5">
-   <div class="row">
-      <div class="col">
-         <div id="map"></div>
+   <!-- Conteúdo específico desta página -->
+   <div class="container mt-5">
+      <h2 class="mb-4 fw-bold">Raio de cobertura</h2>
+   </div>
+   <div class="container mt-5">
+      <div class="row">
+         <div class="col">
+            <div id="map"></div>
+         </div>
       </div>
    </div>
-</div>
+   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+   <div class="container mt-5 pb-5">
+      <div class="row" >
+         <div class="card-group">
+            <div class="card">
+               <img src="{% static '/assets/images/produtor.png' %}" class="card-img-top" alt="...">
+               <div class="card-body">
+                  <h4 class="card-title fw-bold">Usuários Cadastrados</h4>
+                  <p class="card-text">{{ total_usuarios }}</p>
+               </div>
+            </div>
+            
+            <div class="card">
+               <img src="{% static '/assets/images/propriedade.png' %}" class="card-img-top" alt="...">
+               <div class="card-body">
+                  <h4 class="card-title fw-bold ">Propriedades Cadastradas</h4>
+                  <p class="card-text ">{{ total_propriedades }}</p>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-   // Seu script específico para esta página
-   var map = L.map('map').setView([-11.6938, -62.7184], 13);
-   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-   }).addTo(map);
+               </div>
+            </div>
+            
+            <div class="card">
+               <img src="{% static '/assets/images/armadilha.png' %}" class="card-img-top" alt="...">
+               <div class="card-body">
+                  <h4 class="card-title fw-bold">Armadilhas Cadastradas</h4>
+                  <p class="card-text">{{ total_armadilhas }}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script>
+      var map = L.map('map').setView([-11.6938, -62.7184], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
 
-   var armadilha01 = L.marker([-11.69129, -62.74881]).addTo(map).bindPopup('Armadilha 01');
-   var armadilha02 = L.marker([-11.7087, -62.7285]).addTo(map).bindPopup('Armadilha 02');
-   var armadilha03 = L.marker([-11.6901, -62.6921]).addTo(map).bindPopup('Armadilha 03');
-   var armadilha04 = L.marker([-11.7286, -62.7074]).addTo(map).bindPopup('Armadilha 04');
-
-   // Adicionar marcadores conforme necessário
-</script>
+      {% for armadilha in armadilhas %}
+         var armadilha = L.marker([{{ armadilha.coordenadas_geograficas }}]).addTo(map).bindPopup('{{ armadilha.identificador }}');
+         var raioCobertura = L.circle([{{ armadilha.coordenadas_geograficas }}], {
+            color: 'green',
+            fillColor: '#2fffa1',
+            fillOpacity: 0.3,
+            radius: {{ armadilha.raio_cobertura|default:2500 }} 
+         }).addTo(map);
+      {% endfor %}
+   </script>
 {% endblock %}

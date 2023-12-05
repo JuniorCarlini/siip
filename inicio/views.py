@@ -1,10 +1,20 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from .forms import ProprietarioForm
-from .models import Proprietario
+from .models import Proprietario , Armadilha , Propriedade
 
 def index(request):
-    return render(request, 'inicio/index.html')
+
+    # busca as informações do banco de dados para mostrar na página inicial
+    total_usuarios = Proprietario.objects.count()
+    total_propriedades = Propriedade.objects.count()
+    total_armadilhas = Armadilha.objects.count()
+    
+    armadilhas = Armadilha.objects.all()
+    return render(request, 'inicio/index.html',{'armadilhas': armadilhas,
+        'total_usuarios': total_usuarios,
+        'total_armadilhas': total_armadilhas,
+        'total_propriedades': total_propriedades,})
 
 def proprietarios(request):
     form = ProprietarioForm()

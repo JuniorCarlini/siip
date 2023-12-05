@@ -20,6 +20,5 @@ class Armadilha(models.Model):
     identificador = models.CharField(max_length=50)
     coordenadas_geograficas = models.CharField(max_length=50)  # ou use um campo específico para coordenadas geográficas
     horario_ultima_sincronizacao = models.DateTimeField(null=True, blank=True)
-
     def __str__(self):
         return self.identificador
