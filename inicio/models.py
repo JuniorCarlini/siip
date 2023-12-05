@@ -18,7 +18,7 @@ class Propriedade(models.Model):
 class Armadilha(models.Model):
     propriedade = models.ForeignKey(Propriedade, on_delete=models.CASCADE, related_name='armadilhas')
     identificador = models.CharField(max_length=50)
-    coordenadas_geograficas = models.CharField(max_length=50)  # ou use um campo específico para coordenadas geográficas
+    coordenadas_geograficas = models.CharField(max_length=50)
     horario_ultima_sincronizacao = models.DateTimeField(null=True, blank=True)
     def __str__(self):
         return self.identificador
