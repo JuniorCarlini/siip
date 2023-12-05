@@ -12,7 +12,9 @@
 {% block content %}
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center">
-        <h2 class="fw-bold">Propriedades Cadastradas</h2>
+        <h2 class="fw-bold">Propriedades de
+            <span class="fw-normal">{{ proprietario.nome }}</span>
+        </h2>
         <div class="d-flex align-items-center">
             <input type="text" class="form-control me-2" placeholder="Buscar...">
             <button type="button" class="btn btn-success me-2 rounded-3 align-self-center flex-shrink-0"
@@ -24,31 +26,21 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Imagem</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Contato</th>
-                <th scope="col">Email</th>
-                <th scope="col">Ações</th>
+                <th scope="col">Proprietario</th>
+                <th scope="col">Nome da Propriedade</th>
+                <th scope="col">Endereço</th>
             </tr>
         </thead>
         <tbody>
             {% for propriedade in propriedades %}
             <tr>
-                <td class="align-middle">
-                    {% if propriedade.imagem %}
-                    <img src="{{ propriedade.imagem.url }}" class="rounded-circle" alt="" width="40" height="40">
-                    {% else %}
-                    <img src="{% static 'assets/images/usuariopadrao.png' %}" class="rounded-circle" alt="Sem Imagem"
-                        width="40" height="40">
-                    {% endif %}
-                </td>
-                <td class="align-middle">{{ propriedade.nome }}</td>
-                <td class="align-middle">{{ propriedade.numero_telefone }}</td>
-                <td class="align-middle">{{ propriedade.email }}</td>
+                <td class="align-middle">{{ propriedade.proprietario }}</td>
+                <td class="align-middle">{{ propriedade.nome_propriedade }}</td>
+                <td class="align-middle">{{ propriedade.endereco }}</td>
                 <td class="text-end align-middle">
                     <a href="{% url 'propriedades' proprietario_id=propriedade.id %}"
                         class="btn btn-success ps-2 pe-2 rounded-3">
-                        <i class="bi bi-eye-fill"></i> Propriedades
+                        <i class="bi bi-eye-fill"></i> Armadilhas
                     </a>
                     <button class="btn btn-success ps-2 pe-2 rounded-3"
                         data-bs-target="#editarpropriedade{{ propriedade.id }}" data-bs-toggle="modal">
@@ -90,30 +82,27 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Cadastrar Proprietario</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Cadastrar Propriedade de <span
+                        class="fw-normal">{{ proprietario.nome }}</span></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="nome" class="form-label fw-semibold">Nome:</label>
-                        <input type="text" class="form-control" name="nome" placeholder="Digite o nome do proprietario."
-                            required>
+                        <label for="nome_proprietario" class="form-label fw-semibold">Nome do Proprietário:</label>
+                        <input type="text" class="form-control" name="nome_proprietario" value="{{ proprietario.nome }}"
+                            disabled>
                     </div>
                     <div class="mb-3">
-                        <label for="imagem" class="form-label fw-semibold">Imagem:</label>
-                        <input type="file" class="form-control" id="inputGroupFile02" required>
+                        <label for="nome_propriedade" class="form-label fw-semibold">Nome da Propriedade:</label>
+                        <input type="text" class="form-control" name="nome_propriedade"
+                            placeholder="Digite o nome da propriedade." required>
                     </div>
                     <div class="mb-3">
-                        <label for="numero_telefone" class="form-label fw-semibold">Contato:</label>
-                        <input type="text" class="form-control" name="numero_telefone"
-                            placeholder="Digite o contato do proprietario." required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label fw-semibold">E-mail:</label>
-                        <input type="text" class="form-control" name="email"
-                            placeholder="Digite o e-mail do proprietario." required>
+                        <label for="endereco" class="form-label fw-semibold">Endereço:</label>
+                        <input type="text" class="form-control" name="endereco"
+                            placeholder="Digite o endereco do sitio." required>
                     </div>
             </div>
             <div class="modal-footer">
