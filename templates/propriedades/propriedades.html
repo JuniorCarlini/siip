@@ -38,7 +38,7 @@
                 <td class="align-middle">{{ propriedade.nome_propriedade }}</td>
                 <td class="align-middle">{{ propriedade.endereco }}</td>
                 <td class="text-end align-middle">
-                    <a href="{% url 'propriedades' proprietario_id=propriedade.id %}"
+                    <a href="{% url 'armadilhas' propriedade_id=propriedade.id %}"
                         class="btn btn-success ps-2 pe-2 rounded-3">
                         <i class="bi bi-eye-fill"></i> Armadilhas
                     </a>
@@ -105,15 +105,15 @@
                         <input type="text" class="form-control" name="endereco"
                             placeholder="Digite o endereço do sítio." required>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal">
-                        <i class="bi bi-x-square-fill"></i> Cancelar
-                    </button>
-                    <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6">
-                        <i class="bi bi-plus-square-fill"></i> Cadastrar
-                    </button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal">
+                    <i class="bi bi-x-square-fill"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6">
+                    <i class="bi bi-plus-square-fill"></i> Cadastrar
+                </button>
+            </div>
             </form>
         </div>
     </div>

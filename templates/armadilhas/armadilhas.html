@@ -1,0 +1,149 @@
+{% extends 'inicio/base.html' %}
+{% load static %}
+
+{% block head_extra %}
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="fw-bold">Armadilhas da propriedade
+            <span class="fw-normal">{{ proprietario.nome }}</span>
+        </h2>
+        <div class="d-flex align-items-center">
+            <input type="text" class="form-control me-2" placeholder="Buscar...">
+            <button type="button" class="btn btn-success me-2 rounded-3 align-self-center flex-shrink-0"
+                data-bs-toggle="modal" data-bs-target="#cadastraarmadilha">
+                <i class="bi bi-pencil-square"></i> Cadastrar Armadilha
+            </button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Propriedade</th>
+                <th scope="col">Identificador</th>
+                <th scope="col">Coordenadas Geográficas</th>
+                <th scope="col">Horário Última Sincronização</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for armadilha in armadilhas %}
+            <tr>
+                <td class="align-middle">{{ armadilha.propriedade }}</td>
+                <td class="align-middle">{{ armadilha.identificador }}</td>
+                <td class="align-middle">{{ armadilha.coordenadas_geograficas }}</td>
+                <td class="align-middle">{{ armadilha.horario_ultima_sincronizacao }}</td>
+                <td class="text-end align-middle">
+                    <a href="{% url 'propriedades' proprietario_id=proprietario.id %}"
+                        class="btn btn-success ps-2 pe-2 rounded-3">
+                        <i class="bi bi-eye-fill"></i> Propriedades
+                    </a>
+                    <button class="btn btn-success ps-2 pe-2 rounded-3"
+                        data-bs-target="#editarproprietario{{ proprietario.id }}" data-bs-toggle="modal">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </button>
+                </td>
+                <td class="text-end align-middle">
+                    <a href="{% url 'armadilhas_da_propriedade' propriedade_id=armadilha.id %}"
+                        class="btn btn-success ps-2 pe-2 rounded-3">
+                        <i class="bi bi-eye-fill"></i> Detalhes
+                    </a>
+                    <button class="btn btn-success ps-2 pe-2 rounded-3"
+                        data-bs-target="#editararmadilha{{ armadilha.id }}" data-bs-toggle="modal">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal Cadastrar Armadilha -->
+<div class="modal fade" id="cadastraarmadilha" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">
+                    Cadastrar Armadilha de <span class="fw-normal">{{ proprietario.nome }}</span>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nome_proprietario" class="form-label fw-semibold">Nome do Proprietário:</label>
+                        <input type="text" class="form-control fw-normal" name="nome_proprietario"
+                            value="{{ proprietario.nome }}" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="identificador" class="form-label fw-semibold">Identificador:</label>
+                        <input type="text" class="form-control" name="identificador"
+                            placeholder="Digite o identificador da armadilha." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="coordenadas_geograficas" class="form-label fw-semibold">Coordenadas Geográficas:</label>
+                        <input type="text" class="form-control" name="coordenadas_geograficas"
+                            placeholder="Digite as coordenadas geográficas da armadilha." required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal">
+                        <i class="bi bi-x-square-fill"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6">
+                        <i class="bi bi-plus-square-fill"></i> Cadastrar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar Armadilha -->
+<div class="modal fade" id="editararmadilha" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Editar dados da armadilha</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="text" class="form-label fw-semibold">Identificador:</label>
+                        <input type="text" class="form-control" placeholder="Digite o identificador da armadilha.">
+                    </div>
+                    <div class="col">
+                        <label for="text" class="form-label fw-semibold">Coordenadas Geográficas:</label>
+                        <input type="text" class="form-control" placeholder="Digite as coordenadas geográficas da armadilha.">
+                    </div>
+                    <div class="col">
+                        <label for="text" class="form-label fw-semibold">Horário Última Sincronização:</label>
+                        <input type="text" class="form-control" placeholder="Digite o horário da última sincronização.">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal"><i
+                        class="bi bi-x-square-fill"></i>
+                    Cancelar</button>
+                <button type="button" class="btn btn-success rounded-3 fw-semibold px-6"><i
+                        class="bi bi-plus-square-fill"></i>
+                    Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
