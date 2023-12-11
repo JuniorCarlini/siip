@@ -6,7 +6,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include ('inicio.urls')),
-    path('proprietarios/', include('propriedades.urls')),  # Substitua 'seu_novo_app' pelo nome do seu novo app
+    path('proprietarios/', include('propriedades.urls')),
+    path('armadilhas/', include('armadilhas.urls')),
     # outras URLs do seu projeto
 ]
 

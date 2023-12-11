@@ -26,41 +26,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Propriedade</th>
                 <th scope="col">Identificador</th>
-                <th scope="col">Coordenadas Geográficas</th>
-                <th scope="col">Horário Última Sincronização</th>
+                <th scope="col">Propriedade</th>
+                <th scope="col">Coordenadas</th>
+                <th scope="col">Última Sincronização</th>
             </tr>
         </thead>
         <tbody>
             {% for armadilha in armadilhas %}
             <tr>
-                <td class="align-middle">{{ armadilha.propriedade }}</td>
                 <td class="align-middle">{{ armadilha.identificador }}</td>
+                <td class="align-middle">{{ armadilha.propriedade }}</td>
                 <td class="align-middle">{{ armadilha.coordenadas_geograficas }}</td>
                 <td class="align-middle">{{ armadilha.horario_ultima_sincronizacao }}</td>
                 <td class="text-end align-middle">
-                    <a href="{% url 'propriedades' proprietario_id=proprietario.id %}"
-                        class="btn btn-success ps-2 pe-2 rounded-3">
-                        <i class="bi bi-eye-fill"></i> Propriedades
+                    <a href="#" class="btn btn-success ps-2 pe-2 rounded-3">
+                        <i class="bi bi-eye-fill"></i> Ver Armadilha
                     </a>
                     <button class="btn btn-success ps-2 pe-2 rounded-3"
                         data-bs-target="#editarproprietario{{ proprietario.id }}" data-bs-toggle="modal">
                         <i class="bi bi-pencil-square"></i> Editar
                     </button>
                 </td>
-                <td class="text-end align-middle">
-                    <a href="{% url 'armadilhas_da_propriedade' propriedade_id=armadilha.id %}"
-                        class="btn btn-success ps-2 pe-2 rounded-3">
-                        <i class="bi bi-eye-fill"></i> Detalhes
-                    </a>
-                    <button class="btn btn-success ps-2 pe-2 rounded-3"
-                        data-bs-target="#editararmadilha{{ armadilha.id }}" data-bs-toggle="modal">
-                        <i class="bi bi-pencil-square"></i> Editar
-                    </button>
-                </td>
-            </tr>
-            {% endfor %}
+                {% endfor %}
         </tbody>
     </table>
 </div>
@@ -90,19 +78,20 @@
                             placeholder="Digite o identificador da armadilha." required>
                     </div>
                     <div class="mb-3">
-                        <label for="coordenadas_geograficas" class="form-label fw-semibold">Coordenadas Geográficas:</label>
+                        <label for="coordenadas_geograficas" class="form-label fw-semibold">Coordenadas
+                            Geográficas:</label>
                         <input type="text" class="form-control" name="coordenadas_geograficas"
                             placeholder="Digite as coordenadas geográficas da armadilha." required>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal">
-                        <i class="bi bi-x-square-fill"></i> Cancelar
-                    </button>
-                    <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6">
-                        <i class="bi bi-plus-square-fill"></i> Cadastrar
-                    </button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger rounded-3 fw-semibold px-6 me-2" data-bs-dismiss="modal">
+                    <i class="bi bi-x-square-fill"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-success rounded-3 fw-semibold px-6">
+                    <i class="bi bi-plus-square-fill"></i> Cadastrar
+                </button>
+            </div>
             </form>
         </div>
     </div>
@@ -125,7 +114,8 @@
                     </div>
                     <div class="col">
                         <label for="text" class="form-label fw-semibold">Coordenadas Geográficas:</label>
-                        <input type="text" class="form-control" placeholder="Digite as coordenadas geográficas da armadilha.">
+                        <input type="text" class="form-control"
+                            placeholder="Digite as coordenadas geográficas da armadilha.">
                     </div>
                     <div class="col">
                         <label for="text" class="form-label fw-semibold">Horário Última Sincronização:</label>

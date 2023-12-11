@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'inicio',
     'propriedades',
     'armadilhas',
+
 ]
 
 MIDDLEWARE = [
