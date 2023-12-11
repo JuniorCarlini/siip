@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='icon' href='../setup/static/assets/icon/icon.svg' type='image/x-icon' sizes="16x16" />
+    <link rel='icon' href='{% static "/assets/icon/icon.svg" %}' type='image/x-icon' sizes="16x16" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background-image: url(../setup/static/assets/images/backgroundlogin.jpg);
+            background-image: url("{% static '/assets/images/backgroundlogin.jpg' %}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -39,7 +40,15 @@
         .form-control,
         .btn {
             min-height: 3.250rem;
-            line-height: initial;
+            line-height: 1.5;
+            padding: 1rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Ajuste o estilo do botão */
+        .btn {
+            font-size: 1.25rem;
         }
     </style>
 </head>
@@ -50,21 +59,22 @@
             <div class="col-md-4">
                 <div class="login-container">
                     <div class="logo">
-                        <img src="../setup/static/assets/icon/icon.svg" alt="Seu Logo" width="100">
+                        <img src="{% static '/assets/icon/icon.svg' %}" alt="Seu Logo" width="100">
                     </div>
                     <p class="text-center text-light ">Sistema inteligente de identificação de pragas</p>
                     <h1 class="text-center text-light fw-bold">Login</h1>
-                    <form>
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
                         <div class="mb-3">
                             <label for="username" class="form-label text-light fw-bold">Usuário:</label>
-                            <input type="text" class="form-control " id="username" placeholder="Digite seu usuario.">
+                            {{ form.username }}
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label text-light fw-bold">Senha:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Digite sua senha.">
+                            {{ form.password }}
                         </div>
                         <button type="submit"
-                            class="btn btn-warning mt-4 mb-4 w-100 btn-lg btn-block text-black fw-bold ">Entrar</button>
+                            class="btn btn-warning mt-4 mb-4 w-100 btn-lg btn-block text-black fw-bold">Entrar</button>
                     </form>
                 </div>
             </div>

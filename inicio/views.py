@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from .forms import ProprietarioForm
 from .models import Proprietario , Armadilha , Propriedade
 
+@login_required(login_url='login')  # Substitua 'login' pela URL da sua tela de login
 def index(request):
 
     # busca as informações do banco de dados para mostrar na página inicial
@@ -16,6 +18,7 @@ def index(request):
         'total_armadilhas': total_armadilhas,
         'total_propriedades': total_propriedades,})
 
+@login_required(login_url='login')  # Substitua 'login' pela URL da sua tela de login
 def proprietarios(request):
     form = ProprietarioForm()
     
