@@ -18,10 +18,10 @@ def index(request):
         'total_armadilhas': total_armadilhas,
         'total_propriedades': total_propriedades,})
 
-@login_required(login_url='login')  # Substitua 'login' pela URL da sua tela de login
+@login_required(login_url='login')
 def proprietarios(request):
     form = ProprietarioForm()
-    
+
     proprietarios_list = Proprietario.objects.all()
 
     # Configurando a paginação
@@ -38,7 +38,13 @@ def proprietarios(request):
     if request.method == 'POST':
         form = ProprietarioForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect(request.path)
+            proprietario = form.save(commit=False)
+            proprietario.usuario = request.user
+            proprietario.save()
+            
+            return redirect('proprietarios')  # Corrigido para redirecionar para 'proprietarios'
+    
+    # Remova a seguinte linha, pois você já instanciou o formulário acima
+    # form = ProprietarioForm()
 
-    return render(request, 'inicio/proprietarios.html',{'form': form, 'proprietarios': proprietarios})
+    return render(request, 'inicio/proprietarios.html', {'form': form, 'proprietarios': proprietarios})

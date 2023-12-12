@@ -39,17 +39,39 @@
 
         .form-control,
         .btn {
-            min-height: 3.250rem;
-            line-height: 1.5;
-            padding: 1rem;
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            min-height: 3.5rem;
+            /* Altura um pouco maior para elementos do formulário */
+            line-height: initial;
         }
+
 
         /* Ajuste o estilo do botão */
         .btn {
             font-size: 1.25rem;
         }
+
+        .custom-form-group {
+            position: relative;
+            height: 60px;
+            /* Ajuste conforme necessário */
+            border-radius: 10px;
+            /* Adicione bordas arredondadas conforme necessário */
+            overflow: hidden;
+            /* Certifica-se de que o conteúdo não ultrapasse as bordas arredondadas */
+        }
+
+        /* Ajuste o tamanho do input conforme necessário */
+        input {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            /* Ajuste o preenchimento conforme necessário */
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: none;
+            /* Adicione bordas arredondadas ao input */
+        }
+    </style>
     </style>
 </head>
 
@@ -62,7 +84,6 @@
                         <img src="{% static '/assets/icon/icon.svg' %}" alt="Seu Logo" width="100">
                     </div>
                     <p class="text-center text-light ">Sistema inteligente de identificação de pragas</p>
-                    <h1 class="text-center text-light fw-bold">Login</h1>
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="mb-3">
