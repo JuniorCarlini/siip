@@ -13,7 +13,7 @@
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="fw-bold">Armadilhas
-            <span class="fw-normal">{{ armadilha.propriedade }}</span>
+            <span class="fw-normal">{{ propriedade }}</span>
         </h2>
         <div class="d-flex align-items-center">
             <input type="text" class="form-control me-2" placeholder="Buscar...">
@@ -60,7 +60,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">
-                    Cadastrar Armadilha de <span class="fw-normal">{{ proprietario.nome }}</span>
+                    Cadastrar Armadilha de <span class="fw-normal">{{ propriedade }}</span>
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -68,9 +68,9 @@
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="nome_proprietario" class="form-label fw-semibold">Nome do Proprietário:</label>
+                        <label for="nome_proprietario" class="form-label fw-semibold">Propriedade:</label>
                         <input type="text" class="form-control fw-normal" name="nome_proprietario"
-                            value="{{ proprietario.nome }}" disabled>
+                            value="{{ propriedade }}" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="identificador" class="form-label fw-semibold">Identificador:</label>
@@ -78,8 +78,8 @@
                             placeholder="Digite o identificador da armadilha." required>
                     </div>
                     <div class="mb-3">
-                        <label for="coordenadas_geograficas" class="form-label fw-semibold">Coordenadas
-                            Geográficas:</label>
+                        <label for="" class="form-label fw-semibold">Coordenadas
+                            Geográficas:</label>coordenadas_geograficas
                         <input type="text" class="form-control" name="coordenadas_geograficas"
                             placeholder="Digite as coordenadas geográficas da armadilha." required>
                     </div>
