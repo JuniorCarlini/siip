@@ -19,16 +19,22 @@ O projeto foi desenvolvido como parte do curso de Agrocomputação no Instituto 
 
 ## Interface
 - Tela de login.
+  
 ![Captura de Tela](readme/001.png)
 - Tela inicial.
+  
 ![Captura de Tela](readme/002.png)
 - Menu lateral.
+  
 ![Captura de Tela](readme/003.png)
 - Tela de proprietarios.
+  
 ![Captura de Tela](readme/004.png)
 - Modal de cadastro de proprietarios.
+  
 ![Captura de Tela](readme/005.png)
 - Modal de cadastro de propriedades.
+  
 ![Captura de Tela](readme/006.png)
 
 ## Instalação
