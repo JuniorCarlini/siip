@@ -9,7 +9,6 @@ urlpatterns = [
     path('', include ('inicio.urls')),
     path('proprietarios/', include('propriedades.urls')),
     path('armadilhas/', include('armadilhas.urls')),
-    # outras URLs do seu projeto
 ]
 
 if settings.DEBUG:

@@ -4,10 +4,9 @@ from django.shortcuts import render, redirect
 from .forms import ProprietarioForm
 from .models import Proprietario , Armadilha , Propriedade
 
-@login_required(login_url='login')  # Substitua 'login' pela URL da sua tela de login
+@login_required(login_url='login')  
 def index(request):
 
-    # busca as informações do banco de dados para mostrar na página inicial
     total_usuarios = Proprietario.objects.count()
     total_propriedades = Propriedade.objects.count()
     total_armadilhas = Armadilha.objects.count()
@@ -24,7 +23,6 @@ def proprietarios(request):
 
     proprietarios_list = Proprietario.objects.all()
 
-    # Configurando a paginação
     paginator = Paginator(proprietarios_list, 15)
     page = request.GET.get('page')
 
@@ -42,9 +40,6 @@ def proprietarios(request):
             proprietario.usuario = request.user
             proprietario.save()
             
-            return redirect('proprietarios')  # Corrigido para redirecionar para 'proprietarios'
-    
-    # Remova a seguinte linha, pois você já instanciou o formulário acima
-    # form = ProprietarioForm()
+            return redirect('proprietarios') 
 
     return render(request, 'inicio/proprietarios.html', {'form': form, 'proprietarios': proprietarios})

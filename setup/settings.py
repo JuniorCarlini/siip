@@ -90,9 +90,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', )
 
 MEDIA_URL = '/proprietarios/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'proprietarios')  # Ou o caminho exato para a pasta de imagens
+MEDIA_ROOT = os.path.join(BASE_DIR, 'proprietarios')  
 
-# settings.py
-
-LOGOUT_REDIRECT_URL = '/accounts/login/'  # Substitua com a URL desejada após o logout
-LOGIN_REDIRECT_URL = '/'  # Substitua com a URL desejada após o login
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'

@@ -37,14 +37,13 @@
                 <td class="align-middle">{{ propriedade.proprietario }}</td>
                 <td class="align-middle">{{ propriedade.nome_propriedade }}</td>
                 <td class="align-middle">{{ propriedade.endereco }}</td>
-                <!-- propriedades/propriedades.html -->
                 <td class="text-end align-middle">
                     <a href="{% url 'armadilhas' propriedade_id=propriedade.id %}"
                         class="btn btn-success ps-2 pe-2 rounded-3">
                         <i class="bi bi-eye-fill"></i> Ver Armadilhas
                     </a>
 
-                    <button class="btn btn-success ps-2 pe-2 rounded-3"
+                    <button class="btn btn-success ps-2 pe-2 rounded-3 disabled"
                         data-bs-target="#editarpropriedade{{ propriedade.id }}" data-bs-toggle="modal">
                         <i class="bi bi-pencil-square"></i> Editar
                     </button>

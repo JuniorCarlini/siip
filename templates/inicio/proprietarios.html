@@ -37,7 +37,6 @@
                     {% if proprietario.imagem %}
                     <img src="{{ proprietario.imagem.url }}" class="rounded-circle" alt="" width="40" height="40">
                     {% else %}
-                    <!-- Coloque uma imagem padrão ou deixe em branco, dependendo da sua preferência -->
                     <img src="{% static 'assets/images/usuariopadrao.png' %}" class="rounded-circle" alt="Sem Imagem"
                         width="40" height="40">
                     {% endif %}
@@ -45,13 +44,12 @@
                 <td class="align-middle">{{ proprietario.nome }}</td>
                 <td class="align-middle">{{ proprietario.numero_telefone }}</td>
                 <td class="align-middle">{{ proprietario.email }}</td>
-                <!-- Adicione botões de ação conforme necessário -->
                 <td class="text-end align-middle">
                     <a href="{% url 'propriedades' proprietario_id=proprietario.id %}"
                         class="btn btn-success ps-2 pe-2 rounded-3">
                         <i class="bi bi-eye-fill"></i> Propriedades
                     </a>
-                    <button class="btn btn-success ps-2 pe-2 rounded-3"
+                    <button class="btn btn-success ps-2 pe-2 rounded-3 disabled"
                         data-bs-target="#editarproprietario{{ proprietario.id }}" data-bs-toggle="modal">
                         <i class="bi bi-pencil-square"></i> Editar
                     </button>
