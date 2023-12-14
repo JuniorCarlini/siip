@@ -29,7 +29,7 @@ O projeto foi desenvolvido como parte do curso de Agrocomputação no Instituto 
 - Modal de cadastro de proprietarios.
 ![Captura de Tela](readme/005.png)
 - Modal de cadastro de propriedades.
-![Captura de Tela](readme/005.png)
+![Captura de Tela](readme/006.png)
 
 ## Instalação
 
