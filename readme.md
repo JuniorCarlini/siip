@@ -17,6 +17,9 @@ Este projeto é um sistema de cadastro de armadilhas , permitindo aos usuários 
 - Funcionalidades básicas de cadastro de usuários, propriedades e armadilhas.
 - Interface de usuário simples para navegação e interação.
 
+## Interface
+![Captura de Tela](readme/001.png)
+
 ## Instalação
 
 use Python 3.10.
@@ -26,3 +29,4 @@ $ pip install -r requirements.txt
 
 velha venv
 $ pip freeze > requirements.txt
+
