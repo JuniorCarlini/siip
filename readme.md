@@ -18,7 +18,18 @@ Este projeto é um sistema de cadastro de armadilhas , permitindo aos usuários 
 - Interface de usuário simples para navegação e interação.
 
 ## Interface
+- Tela de login.
 ![Captura de Tela](readme/001.png)
+- Tela inicial.
+![Captura de Tela](readme/002.png)
+- Menu lateral.
+![Captura de Tela](readme/003.png)
+- Tela de proprietarios.
+![Captura de Tela](readme/004.png)
+- Modal de cadastro de proprietarios.
+![Captura de Tela](readme/005.png)
+- Modal de cadastro de propriedades.
+![Captura de Tela](readme/005.png)
 
 ## Instalação
 
@@ -29,4 +40,3 @@ $ pip install -r requirements.txt
 
 velha venv
 $ pip freeze > requirements.txt
-
