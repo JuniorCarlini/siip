@@ -41,8 +41,10 @@ O projeto foi desenvolvido como parte do curso de Agrocomputação no Instituto 
 
 use Python 3.10.
 
-nova venv
-$ pip install -r requirements.txt
-
-velha venv
-$ pip freeze > requirements.txt
+```sh
+pip install -r requirements.txt
+```
+old venv:
+```sh
+pip freeze > requirements.txt
+```
