@@ -40,6 +40,7 @@ O projeto foi desenvolvido como parte do curso de Agrocomputação no Instituto 
 ## Instalação
 
 use Python 3.10.
+
 new venv:
 ```sh
 pip install -r requirements.txt
